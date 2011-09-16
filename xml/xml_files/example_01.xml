@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <elem1 ID="first">
+        <name>Dima</name>
+        <lastname>Kabanov</lastname>
+    </elem1>
+    <elem2 changedAt="2011-05-22">
+        <record>Blah-blah</record>
+    </elem2>
+</root>

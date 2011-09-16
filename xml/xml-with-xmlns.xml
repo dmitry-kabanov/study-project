@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customer xmlns="http://www.example.com/customer.xsd" cust_id="1">
+    <cust_name>John Doe</cust_name>
+</customer>

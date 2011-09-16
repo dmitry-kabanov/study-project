@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions
+    targetNamespace="uri:diy"
+    xmlns:tns="uri:diy"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl">
+
+    <binding name="tutorialSoap" type="tns:tutorialPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="helloWorld">
+            <soap:operation soapAction="/radio" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+</definitions>
+

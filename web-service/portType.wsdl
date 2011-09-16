@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions
+    targetNamespace="uri:diy"
+    xmlns:tns="uri:diy"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types/>
+
+    <message name="helloWorldRequest">
+        <part name="name" type="xsd:string"/>
+    </message>
+
+    <message name="helloWorldResponse">
+        <part name="helloWorldResult" type="xsd:string"/>
+    </message>
+
+    <portType name="tutorialPort">
+        <operation name="helloWorld">
+            <input message="tns:helloWorldRequest"/>
+            <output message="tns:helloWorldResponse"/>
+        </operation>
+    </portType>
+</definitions>

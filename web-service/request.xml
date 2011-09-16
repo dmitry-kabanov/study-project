@@ -1,0 +1,12 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="uri:tutorial"
+                   xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+                   SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:getSolutionOfSquareEquation>
+            <a xsi:type="xsd:double">1</a>
+            <b xsi:type="xsd:double">2</b>
+            <c xsi:type="xsd:double">1</c>
+        </ns1:getSolutionOfSquareEquation>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

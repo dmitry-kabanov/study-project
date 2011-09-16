@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions
+    targetNamespace="uri:diy"
+    xmlns:tns="uri:diy"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:complexType name="SquareEquationSolution">
+            <xsd:sequence>
+                <xsd:element name="roots" type="tns:RootsList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+
+        <xsd:complexType name="RootsList">
+            <xsd:sequence>
+                <xsd:element name="root" type="xsd:double" minOccurs="0" maxOccurs="2"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </types>
+
+    <message name="helloWorldRequest">
+        <part name="name" type="xsd:string"/>
+    </message>
+
+    <message name="helloWorldResponse">
+        <part name="helloWorldResult" type="xsd:string"/>
+    </message>
+
+    <message name="getSolutionOfSquareEquationRequest">
+        <part name="a" type="xsd:double"/>
+        <part name="b" type="xsd:double"/>
+        <part name="c" type="xsd:double"/>
+    </message>
+
+    <message name="getSolutionOfSquareEquationResponse">
+        <part name="squareEquationSolution" type="tns:SquareEquationSolution"/>
+    </message>
+
+    <portType name="tutorialPort">
+        <operation name="helloWorld">
+            <input message="tns:helloWorldRequest"/>
+            <output message="tns:helloWorldResponse"/>
+        </operation>
+        <operation name="getSolutionOfSquareEquation">
+            <input message="tns:getSolutionOfSquareEquationRequest"/>
+            <output message="tns:getSolutionOfSquareEquationResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="tutorialSoap" type="tns:tutorialPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="helloWorld">
+            <soap:operation soapAction="/radio" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+
+        <operation name="getSolutionOfSquareEquation">
+            <soap:operation soapAction="/radio" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="uri:tutorial"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+
+    </binding>
+
+    <service name="tutorial">
+        <port name="tutorialPort" binding="tns:tutorialSoap">
+            <soap:address location="http://study-project/web-service/server.php"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Client SYSTEM "http://www.example.com/dtds/client.dtd">
+<clients>
+    <client ID="1">Joe</client>
+    <orders>
+        <order ID="1">ProductA</order>
+        <order ID="2">ProductB</order>
+    </orders>
+    <client ID="2">Jim</client>
+    <orders>
+        <order ID="1">ProductA</order>
+        <order ID="2">ProductB</order>
+    </orders>
+    <client></client>
+</clients>

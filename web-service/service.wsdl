@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions
+    targetNamespace="uri:diy"
+    xmlns:tns="uri:diy"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <import namespace="uri:diy" location="portType.wsdl"/>
+    <import namespace="uri:diy" location="binding.wsdl"/>
+
+    <service name="tutorial">
+        <document>
+            For a complete description of this service, go to the following URL:
+            <a href="http://radio.userland.com">radio.userland.com</a>
+        </document>
+        
+        <port name="tutorialPort" binding="tns:tutorialSoap">
+            <soap:address location="http://study-project/web-service/server.php"/>
+        </port>
+    </service>
+</definitions>

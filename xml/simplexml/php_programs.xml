@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<php_programs>
+    <program name="cart">
+        <price>100</price>
+        <licenseType>BSD</licenseType>
+    </program>
+    <program name="survey">
+        <price>500</price>
+        <licenseType>Proprietary</licenseType>
+    </program>
+</php_programs>

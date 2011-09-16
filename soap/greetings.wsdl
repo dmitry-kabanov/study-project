@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<definitions name='greetings'
+    targetNamespace='http://study-project/sayHello'
+    xmlns:tns='http://study-project/sayHello'
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <message name="sayHelloRequest">
+        <part name="name" type="xsd:string" />
+    </message>
+
+    <message name="sayHelloResponse">
+        <part name="salutation" type="xsd:string" />
+    </message>
+
+    <portType name="sayHelloPortType">
+        <operation name="sayHello">
+            <input message="sayHelloRequest" />
+            <output message="sayHelloResponse" />
+        </operation>
+    </portType>
+
+    <binding name="sayHelloBinding" type="tns:sayHelloPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="sayHello">
+            <soap:operation soapAction="" />
+            <input>
+                <soap:body use="encoded" namespace=""
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body use="encoded" namespace=""
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+    </binding>
+
+    <service name="sayHelloService">
+        <port name="sayHelloPort" binding="sayHelloBinding">
+            <soap:address location="http://study-project/soap/soapserver.php" />
+        </port>
+    </service>
+
+</definitions>
