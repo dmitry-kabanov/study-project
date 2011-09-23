@@ -2,41 +2,33 @@
 
 class DiceGameTest extends PHPUnit_Framework_TestCase
 {
-    public function testPlayerShouldWinWhenResultOver7()
+    public function testThatDiceAreRolledAndWeCanObtainResults()
     {
-        $game = $this->getTestObject(8, 3);
+        $game = $this->getTestObject(11);
         $game->play();
-        $this->assertEquals('winner', $game->getResult());
+        $game->getResult();
     }
 
-    public function testPlayerShouldPushWhenResultEquals7()
+    private function getTestObject($total)
     {
-        $game = $this->getTestObject(4, 3);
-        $game->play();
-        $this->assertEquals('push', $game->getResult());
-    }
+        $cup = $this->getMockBuilder('Cup')
+                ->disableOriginalConstructor()
+                ->getMock();
+        $cup
+                ->expects($this->once())
+                ->method('getTotal')
+                ->will($this->returnValue($total));
+        $cup
+                ->expects($this->once())
+                ->method('roll');
 
-    public function testPlayerShouldLooseWhenResultLessThan7()
-    {
-        $game = $this->getTestObject(2, 3);
-        $game->play();
-        $this->assertEquals('looser', $game->getResult());
-    }
+        $strategy = $this->getMock('DiceGameStrategy');
+        $strategy
+            ->expects($this->once())
+            ->method('getResult')
+            ->with($this->equalTo($total));
 
-    private function getTestObject($faceValue1, $faceValue2)
-    {
-        $d1 = $this->getDieMock($faceValue1);
-        $d2 = $this->getDieMock($faceValue2);
-        return new DiceGame($d1, $d2);
-    }
-
-    private function getDieMock($result)
-    {
-        $die = $this->getMock('DieClass');
-        $die
-            ->expects($this->any())
-            ->method('getFaceValue')
-            ->will($this->returnValue($result));
-        return $die;
+        $game = new DiceGame($cup, $strategy);
+        return $game;
     }
 }

@@ -12,11 +12,11 @@ $d2 = new DieClass();
 
 if ($_SERVER['argv'][1] == 'girls')
 {
-    $game = new GirlsGame();
+    $game = new GirlsGame($d1, $d2);
 }
 else
 {
-    $ga
+    $game = new DiceGame($d1, $d2, $gameStrategy);
 }
 
 $game = new DiceGame($d1, $d2);
