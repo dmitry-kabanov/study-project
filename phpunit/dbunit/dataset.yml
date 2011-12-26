@@ -1,0 +1,18 @@
+user
+  -
+    id: 1
+    name: Дима
+    age: 25
+    date_of_birth: 1986-12-14
+
+  -
+    id: 2
+    name: Саша
+    age: 27
+    date_of_birth: 1984-01-17
+
+  -
+    id: 3
+    name: Андрей
+    age: 32
+    date_of_birth: 1979-06-16
