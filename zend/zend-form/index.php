@@ -37,15 +37,17 @@ function getForm()
 }
 
 $form = getForm();
+$request = new Zend_Controller_Request_Http();
 
-if (!$form->isValid($_POST)) {
-    $view = new Zend_View();
-    echo $form->render($view);
+$view = new Zend_View();
+echo $form->render($view);
 
+if (!$form->isValid($_POST) && $request->isPost()) {
     var_dump($form->getErrors());
     var_dump($form->getMessages());
     exit;
 }
-
-echo 'Thanks for submitting form'.PHP_EOL;
-var_dump($form->getValues());
+else if ($request->isPost()) {
+    echo 'Thanks for submitting form'.PHP_EOL;
+    var_dump($form->getValues());
+}
