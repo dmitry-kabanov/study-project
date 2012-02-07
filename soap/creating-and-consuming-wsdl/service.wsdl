@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:tns="http://customer-ws.tld/customer-ws_Customers.wsdl"
+    xmlns:s="http://wwww.w3.org/2001/XMLSchema"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://customer-ws.tld/customer-ws_Customers.wsdl"
+    name="customer-WS">
+
+    <wsdl:types>
+        <s:schema targetNamespace="http://customer-ws.tld/customer-ws_Customers.wsdl"
+                  xmlns:tns="http://customer-ws.tld/customer-ws_Customers.wsdl">
+            <s:complexType name="Customer">
+                <s:sequence>
+                    <s:element name="customerNr" type="s:string"/>
+                    <s:element name="salutation" type="s:string"/>
+                    <s:element name="title" type="s:string"/>
+                    <s:element name="firstname" type="s:string"/>
+                    <s:element name="lastname" type="s:string"/>
+                    <s:element name="phone" type="s:string"/>
+                    <s:element name="fax" type="s:string"/>
+                    <s:element name="email" type="s:string"/>
+                    <s:element name="postalZip" type="s:string"/>
+                    <s:element name="postalCityName" type="s:string"/>
+                    <s:element name="postalStreet" type="s:string"/>
+                    <s:element name="postalStreetNumber" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+
+            <s:complexType name="CustomerArray">
+                <s:complexContent>
+                    <s:restriction base="soapenc:Array">
+                        <s:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:Customer[]"/>
+                    </s:restriction>
+                </s:complexContent>
+            </s:complexType>
+        </s:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getDoubledValueRequest">
+        <wsdl:part name="Value" type="s:double"/>
+    </wsdl:message>
+
+    <wsdl:message name="getDoubledValueResponse">
+        <wsdl:part name="DoubledValue" type="s:double"/>
+    </wsdl:message>
+
+    <wsdl:message name="getCustomersRequest">
+
+    </wsdl:message>
+
+    <wsdl:message name="getCustomerResponse">
+        <wsdl:part name="Result" type="tns:CustomerArray"/>
+    </wsdl:message>
+
+    <wsdl:portType name="CustomerPortType">
+        <wsdl:operation name="getCustomers">
+            <wsdl:input message="tns:getCustomersRequest"/>
+            <wsdl:output message="tns:getCustomerResponse"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getDoubledValue">
+            <wsdl:input message="tns:getDoubledValueRequest"/>
+            <wsdl:output message="tns:getDoubledValueResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ServiceSoap" type="tns:CustomerPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getCustomers">
+            <soap:operation soapAction="urn:customer-ws.tld-scramble#getCustomers"/>
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:customer-ws.tld-scramble"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:customer-ws.tld-scramble"
+                        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="getDoubledValue">
+            <soap:operation soapAction="Service/getDoubledValue" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="customer-WS">
+        <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+            <soap:address location="http://study-project/soap/creating-and-consuming-wsdl/server.php"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
